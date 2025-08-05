@@ -1,0 +1,4 @@
+video_path: "../data/EchoNet-Dynamic/Videos/0X1A2E9496910EFF5B.avi"
+model_path: "../models/yolo.pt"
+image_size: 128
+interpolation_points: 42
