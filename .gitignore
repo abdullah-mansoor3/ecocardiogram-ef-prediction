@@ -87,5 +87,3 @@ cython_debug/
 
 # Data
 *data/
-*models/
-!models/best.pt

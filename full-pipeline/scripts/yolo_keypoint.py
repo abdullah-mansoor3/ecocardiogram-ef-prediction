@@ -50,7 +50,7 @@ def get_min_max_area_frames(video_path, model_path, image_size=128, interpolatio
         polygon = interpolate_polygon(sorted_points, interpolation_points)
         area = cv2.contourArea(polygon.astype(np.int32))
 
-        frame_areas.append((frame_num, area))
+        frame_areas.append((frame_num, area,keypoints,frame))
 
     cap.release()
 
@@ -60,4 +60,4 @@ def get_min_max_area_frames(video_path, model_path, image_size=128, interpolatio
     min_frame = min(frame_areas, key=lambda x: x[1])
     max_frame = max(frame_areas, key=lambda x: x[1])
 
-    return min_frame, max_frame  # (frame_num, area)
+    return min_frame, max_frame  # (frame_num, area, keypoints, image)

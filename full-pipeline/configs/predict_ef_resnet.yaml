@@ -1,0 +1,2 @@
+model_esv_path: "../models/best_model_esv.pt"
+model_edv_path: "../models/best_model_edv.pt"
