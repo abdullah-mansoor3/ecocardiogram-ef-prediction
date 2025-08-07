@@ -35,7 +35,7 @@ with open("./configs/predict_ef.yaml", "r") as f:
 #     edv_model_path=ef_cfg["edv_model_path"],
 #     esv_model_path=ef_cfg["esv_model_path"]
 # )
-edv, esv, ef = predict_ef(
+res = predict_ef(
     esv_image=min_image,
     edv_image=max_image,
     area_esv=min_area,
@@ -45,6 +45,6 @@ edv, esv, ef = predict_ef(
 )
 
 
-print(f"\n📈 EDV: {edv:.2f} mL")
-print(f"📉 ESV: {esv:.2f} mL")
-print(f"🫀 EF:  {ef:.2f}%")
+print(f"\n📈 EDV: {res['EDV']:.2f} mL")
+print(f"📉 ESV: {res['ESV']:.2f} mL")
+print(f"🫀 EF:  {res['EF']:.2f}%")
