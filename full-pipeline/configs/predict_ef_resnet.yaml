@@ -1,2 +1,2 @@
-model_esv_path: "../models/best_model_esv.pt"
-model_edv_path: "../models/best_model_edv.pt"
+best_model_path: "../models/esv_edv_combined_model.pth"
+stats_path : "../models/input_stats.yaml"

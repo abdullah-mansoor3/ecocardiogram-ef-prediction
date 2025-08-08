@@ -1,2 +1,0 @@
-edv_model_path: "../models/xgboost_edv.pkl"
-esv_model_path: "../models/xgboost_edv.pkl"
