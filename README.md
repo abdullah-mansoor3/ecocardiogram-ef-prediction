@@ -16,25 +16,19 @@ The final EF prediction pipeline consists of four stages:
 ### 1. Left Ventricle Keypoint Detection  
 - A YOLOv11 pose estimation model is trained to predict 40 anatomical keypoints outlining the LV in each frame.  
 - Keypoints are sorted around the centroid to form a closed contour and calculate the LV area per frame.  
-#### sample output with the keypoints joined
-![YOLO Keypoint Detection](media/yolo-sample-output.png)
-
+#### sample output with the keypoints joined  
+![Keypoints visualization (GIF)](media/keypoints_visualization.gif)  
+[Open GIF file](media/keypoints_visualization.gif)
 
 ### 2. Frame Selection (ESV & EDV)  
 - LV area is tracked across the cardiac cycle.  
 - The frame with the **minimum** LV area is selected as End-Systolic (ESV) frame.  
 - The frame with the **maximum** LV area is selected as End-Diastolic (EDV) frame.  
-- Each selected frame is stored along with its LV area and keypoints.   
+- Each selected frame is stored along with its LV area and keypoints.  
 
-### 3. Dual-Output Hybrid Regression Model  
-- Inputs:  
-  - ESV frame image + LV area + 40 keypoints  
-  - EDV frame image + LV area + 40 keypoints  
-- Architecture: ResNet18-based CNN for image features + auxiliary branches for numerical inputs.  
-- Outputs: Predicted ESV and EDV volumes.  
-- Loss: MSE for ESV & EDV + 0.3 × MSE for EF (from predicted volumes) to enforce physiological consistency.  
-
-
+ESV / EDV example frames:  
+![ESV frame](media/esv_frame.png) ![EDV frame](media/edv_frame.png)  
+[esv_frame.png](media/esv_frame.png) · [edv_frame.png](media/edv_frame.png)
 
 ### 4. EF Calculation & Clinical Interpretation  
 - EF is computed as: EF = (EDV − ESV) / EDV.  
@@ -44,7 +38,8 @@ The final EF prediction pipeline consists of four stages:
   - High EF (>70%): Hyperdynamic state (possible anemia, sepsis)  
 - ESV and EDV ranges also evaluated for abnormal enlargement or volume overload.  
 
-![Sample Prediction Output](media/final-analysis.png)
+![Sample Prediction Output](media/final-analysis.png)  
+[final-analysis.png](media/final-analysis.png)
 
 
 ## Results

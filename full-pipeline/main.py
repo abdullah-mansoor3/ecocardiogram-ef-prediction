@@ -27,8 +27,18 @@ def analyse_echo_video(video_path):
         video_path=yolo_cfg["video_path"],
         model_path=yolo_cfg["model_path"],
         image_size=yolo_cfg["image_size"],
-        interpolation_points=yolo_cfg["interpolation_points"]
+        interpolation_points=yolo_cfg["interpolation_points"],
+        output_dir=yolo_cfg.get("output_dir", "output")  # Default to "output" if not specified
     )
+
+    if min_frame is None or max_frame is None:
+        print("Error: failed to extract ESV/EDV frames — no valid polygons found. Check model or input video.")
+        return {
+            'ESV': None,
+            'EDV': None,
+            'EF': None,
+            'analysis': "Failed: no valid LV polygons detected."
+        }
 
     min_area = min_frame[1]
     max_area = max_frame[1]
